@@ -1,0 +1,45 @@
+<div>
+	<div *ngIf="currentTodo.id" class="edit-form">
+		<h4>My Todo</h4>
+		<form>
+			<div class="form-group">
+				<label for="title">Title</label>
+				<input type="text" class="form-control" id="title" [(ngModel)]="currentTodo.title" name="title" />
+			</div>
+			<div class="form-group">
+				<label for="description">Description</label>
+				<input type="text" class="form-control" id="description" [(ngModel)]="currentTodo.description"
+					name="description" />
+			</div>
+
+			<div class="form-group">
+				<label><strong>Status:</strong></label>
+				{{ currentTodo.is_completed ? "Completed" : "Pending" }}
+			</div>
+		</form>
+
+		<button class="badge badge-primary mr-2" *ngIf="currentTodo.is_completed" (click)="updateCompleted(false)">
+			Mark as Pending
+		</button>
+		<button *ngIf="!currentTodo.is_completed" class="badge badge-primary mr-2" (click)="updateCompleted(true)">
+			Mark as Completed
+		</button>
+
+		<button class="badge badge-danger mr-2" (click)="deleteTodo()">
+			Delete
+		</button>
+
+		<button type="submit" class="badge badge-success mb-2" (click)="updateTodo()">
+			Update
+		</button>
+
+		<a class="nav-link" routerLink="/todo">Back to Todo List</a>
+
+		<p>{{ message }}</p>
+	</div>
+
+	<div *ngIf="!currentTodo.id">
+		<br />
+		<p>Cannot access this Todo...</p>
+	</div>
+</div>
