@@ -1,0 +1,43 @@
+<div class="list row mt-4">
+	<div class="col-md-8">
+	</div>
+	<div class="col-md-6">
+		<h4>My Todo list</h4>
+		<ul class="list-group">
+			<li class="list-group-item" *ngFor="let td of todo; let i = index" [class.active]="i == currentIndex"
+				(click)="setActiveTodo(td, i)">
+				{{ td.title }}
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<div *ngIf="currentTodo.id">
+			<h4>Todo</h4>
+			<div>
+				<label><strong>Title:</strong></label> {{ currentTodo.title }}
+			</div>
+			<div>
+				<label><strong>Description:</strong></label>
+				{{ currentTodo.description }}
+			</div>
+			<div>
+				<label><strong>Status:</strong></label>
+				{{ currentTodo.is_completed ? "Completed" : "Pending" }}
+			</div>
+
+			<a class="badge badge-warning" routerLink="/todo/{{ currentTodo.id }}">
+				Edit
+			</a>
+		</div>
+		<div *ngIf="(currentTodo | json) == '{}'">
+			<br />
+			<p>Please click on a Todo to modify</p>
+		</div>
+	</div>
+</div>
+
+<div class="list row mt-4">
+	<div class="nav-item">
+		<button class="btn btn-success" routerLink="/add">Add Todo</button>
+	</div>
+</div>
