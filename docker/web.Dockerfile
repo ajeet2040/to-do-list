@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY ../src/ui/package.json /app
 RUN npm install
-RUN npm install -g @angular/cli@7.3.10
+RUN npm install -g @angular/cli@14.2.9
 
 COPY ./src/ui /app
 CMD ng serve --host 0.0.0.0
